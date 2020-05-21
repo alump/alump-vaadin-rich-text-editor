@@ -1,8 +1,8 @@
-<link rel="import" href="vaadin-rich-text-editor-icons.html">
+<link rel="import" href="alump-vaadin-rich-text-editor-icons.html">
 
-<dom-module id="vaadin-rich-text-editor-toolbar-styles">
+<dom-module id="alump-vaadin-rich-text-editor-toolbar-styles">
   <template>
-    <style include="vaadin-rich-text-editor-icons">
+    <style include="alump-vaadin-rich-text-editor-icons">
       [part="toolbar"] {
         display: flex;
         flex-wrap: wrap;
@@ -30,6 +30,11 @@
         background-color: #eee;
       }
 
+      [part~="toolbar-button-hr"][on] {
+        background-color: transparent !important;
+        color: var(--lumo-contrast-60pct) !important;
+      }
+
       [part~="toolbar-button"]::before {
         position: absolute;
         top: 50%;
@@ -47,6 +52,12 @@
       [part~="toolbar-button-image"]::before,
       [part~="toolbar-button-link"]::before,
       [part~="toolbar-button-clean"]::before {
+        font-family: "vaadin-rte-icons", sans-serif;
+      }
+
+      [part~="toolbar-button-indentLeft"]::before,
+      [part~="toolbar-button-indentRight"]::before,
+      [part~="toolbar-button-hr"]::before {
         font-family: "vaadin-rte-icons", sans-serif;
       }
 
@@ -123,6 +134,20 @@
       [part~="toolbar-button-code-block"]::before {
         content: "</>";
         font-size: 0.875em;
+      }
+
+      [part~="toolbar-group-font"] select {
+        margin-left: 1em;
+        height: 2.5em;
+        align-self: center;
+        border: none;
+        font-size: 14px;
+        background: none;
+        color: var(--lumo-contrast-60pct);
+      }
+
+      [part~="toolbar-group-font"] select:first-child {
+        margin-left: 0;
       }
     </style>
   </template>

@@ -8,7 +8,10 @@
 [![Available in Vaadin_Directory](https://img.shields.io/vaadin-directory/v/vaadinvaadin-rich-text-editor.svg)](https://vaadin.com/directory/component/vaadinvaadin-rich-text-editor)
 [![Stars in Vaadin_Directory](https://img.shields.io/vaadin-directory/stars/vaadinvaadin-rich-text-editor.svg)](https://vaadin.com/directory/component/vaadinvaadin-rich-text-editor)
 
-# &lt;vaadin-rich-text-editor&gt;
+# &lt;alump-vaadin-rich-text-editor&gt;
+
+
+[&lt;alump-vaadin-rich-text-editor&gt;](https://github.com/alump/alump-vaadin-rich-text-editor) is a Web Component extending vaadin-rich-text-editor
 
 [&lt;vaadin-rich-text-editor&gt;](https://vaadin.com/components/vaadin-rich-text-editor) is a Web Component providing rich text editor functionality, part of the [Vaadin components](https://vaadin.com/components).
 
@@ -17,7 +20,7 @@
 ## Example Usage
 
 ```html
-<vaadin-rich-text-editor>
+<alump-vaadin-rich-text-editor>
   ...
-</vaadin-rich-text-editor>
+</alump-vaadin-rich-text-editor>
 ```

@@ -14,14 +14,15 @@ This program is available under Apache License Version 2.0, available at https:/
 <link rel="import" href="../../vaadin-text-field/src/vaadin-text-field.html">
 <link rel="import" href="../../vaadin-element-mixin/vaadin-element-mixin.html">
 <link rel="import" href="../../vaadin-license-checker/vaadin-license-checker.html">
+<link rel="import" href="../../vaadin-icons/vaadin-icons.html">
 
 <link rel="import" href="../vendor/vaadin-quill.html">
-<link rel="import" href="vaadin-rich-text-editor-styles.html">
-<link rel="import" href="vaadin-rich-text-editor-toolbar-styles.html">
+<link rel="import" href="alump-vaadin-rich-text-editor-styles.html">
+<link rel="import" href="alump-vaadin-rich-text-editor-toolbar-styles.html">
 
-<dom-module id="vaadin-rich-text-editor">
+<dom-module id="alump-vaadin-rich-text-editor">
   <template>
-    <style include="vaadin-rich-text-editor-styles">
+    <style include="alump-vaadin-rich-text-editor-styles">
       :host {
         display: flex;
         flex-direction: column;
@@ -109,6 +110,23 @@ This program is available under Apache License Version 2.0, available at https:/
           <button type="button" class="ql-align" value="right" part="toolbar-button toolbar-button-align-right" title$="[[i18n.alignRight]]"></button>
         </span>
 
+        <span part="toolbar-group toolbar-group-indent">
+          <!-- Indent buttons (added by alump-vaadin-rich-text-editor) -->
+          <button type="button" class="ql-indent" value="-1" part="toolbar-button toolbar-button-indent-left" title$="[[i18n.indentLeft]]">
+            <iron-icon icon="vaadin:deindent"></iron-icon>
+          </button>
+          <button type="button" class="ql-indent" value="+1" part="toolbar-button toolbar-button-indent-right" title$="[[i18n.indentRight]]">
+            <iron-icon icon="vaadin:indent"></iron-icon>
+          </button>
+        </span>
+
+        <span part="toolbar-group toolbar-group-hr">
+          <!-- HR button (added by alump-vaadin-rich-text-editor) -->
+          <button type="button" class="ql-hr" value="" part="toolbar-button toolbar-button-hr" title$="[[i18n.hr]]">
+            <iron-icon icon="vaadin:line-h"></iron-icon>
+          </button>
+        </span>
+
         <span part="toolbar-group toolbar-group-rich-text">
           <!-- Image -->
           <button type="button" part="toolbar-button toolbar-button-image" title$="[[i18n.image]]" on-touchend="_onImageTouchEnd" on-click="_onImageClick"></button>
@@ -130,6 +148,53 @@ This program is available under Apache License Version 2.0, available at https:/
         </span>
 
         <input id="fileInput" type="file" accept="image/png, image/gif, image/jpeg, image/bmp, image/x-icon" on-change="_uploadImage">
+
+        <span part="toolbar-group toolbar-group-font">
+          <!-- Font options (added by alump-vaadin-rich-text-editor) -->
+          <select class="ql-background">
+            <option selected value="">[[i18n.background]]</option>
+            <option value="white">White</option>
+            <option value="black">Black</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+            <option value="blue">Blue</option>
+          </select>
+          <select class="ql-color">
+            <option selected value="">[[i18n.foreground]]</option>
+            <option value="white">White</option>
+            <option value="black">Black</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+            <option value="blue">Blue</option>
+          </select>
+          <select class="ql-font">
+            <option selected value="">[[i18n.fontFamily]]</option>
+            <option value="">Normal</option>
+            <option value="times-new-roman">Times New Roman</option>
+            <option value="arial">Arial</option>
+            <option value="courier-new">Courier New</option>
+            <option value="georgia">Georgia</option>
+            <option value="trebucket">Trebucket</option>
+            <option value="verdana">Verdana</option>
+          </select>
+          <select class="ql-size">
+            <option selected value="">[[i18n.fontSize]]</option>
+            <option value="xx-small">XX-Small</option>
+            <option value="x-small">X-Small</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+            <option value="x-large">X-Large</option>
+            <option value="xx-large">XX-Large</option>
+          </select>
+        </span>
+
+        <button type="button" id="add-field-button" part="toolbar-button toolbar-button-add-value" title$="[[i18n.customAction]]"
+          on-click="_serverButtonClicked">
+          <iron-icon icon="[[customactionicon]]"></iron-icon>
+        </button>
       </div>
 
       <div part="content"></div>
@@ -193,7 +258,11 @@ This program is available under Apache License Version 2.0, available at https:/
         'list',
         'align',
         'blockquote',
-        'code-block'
+        'code-block',
+        'indent',
+        'color',
+        'font',
+        'size'
       ];
 
       const SOURCE = {
@@ -210,12 +279,12 @@ This program is available under Apache License Version 2.0, available at https:/
       const TAB_KEY = 9;
 
       /**
-       * `<vaadin-rich-text-editor>` is a Web Component for rich text editing.
+       * `<alump-vaadin-rich-text-editor>` is a Web Component for rich text editing.
        * It provides a set of toolbar controls to apply formatting on the content,
        * which is stored and can be accessed as HTML5 or JSON string.
        *
        * ```
-       * <vaadin-rich-text-editor></vaadin-rich-text-editor>
+       * <alump-vaadin-rich-text-editor></alump-vaadin-rich-text-editor>
        * ```
        *
        * Vaadin Rich Text Editor focuses on the structure, not the styling of content.
@@ -280,11 +349,11 @@ This program is available under Apache License Version 2.0, available at https:/
        */
       class RichTextEditorElement extends Vaadin.ElementMixin(Vaadin.ThemableMixin(Polymer.Element)) {
         static get is() {
-          return 'vaadin-rich-text-editor';
+          return 'alump-vaadin-rich-text-editor';
         }
 
         static get version() {
-          return '1.2.0';
+          return '1.2.0-alump';
         }
 
         static get properties() {
@@ -337,6 +406,14 @@ This program is available under Apache License Version 2.0, available at https:/
             },
 
             /**
+             * Define icon name to use with custom action
+             */
+            customactionicon: {
+              type: String,
+              value: 'vaadin:file-text'
+            },
+
+            /**
              * An object used to localize this component. The properties are used
              * e.g. as the tooltips for the editor toolbar buttons.
              *
@@ -370,9 +447,25 @@ This program is available under Apache License Version 2.0, available at https:/
                   linkDialogTitle: 'Link address',
                   ok: 'OK',
                   cancel: 'Cancel',
-                  remove: 'Remove'
+                  remove: 'Remove',
+                  identLeft: 'Indent Left',
+                  indentRight: 'Indent Right',
+                  hr: 'Insert Horizontal Rule',
+                  fontSize: 'Size',
+                  fontFamily: 'Font',
+                  background: 'Background',
+                  foreground: 'Foreground',
+                  customAction: 'Create Dynamic Content'
                 };
               }
+            },
+
+            /**
+             * Toolbar config JSON
+             */
+            toolbarConfig: {
+              type: Object,
+              value: {}
             },
 
             _editor: {
@@ -428,6 +521,46 @@ This program is available under Apache License Version 2.0, available at https:/
           if (typeof licenseChecker === 'function') {
             licenseChecker(RichTextEditorElement);
           }
+        }
+
+        currentIndex(defVal) {
+          const selection = this._editor.getSelection();
+          return selection === null ? defVal : selection.index;
+        }
+
+        insertDataEntry(id, text) {
+          const that = this;
+          if (!this._dataEntryRegisted) {
+            const BlockEmbed = Quill.import('blots/block/embed');
+            class DataEntryBlock extends BlockEmbed {
+              static create(entry) {
+                let node = super.create();
+                node.dataset.id = entry.id;
+                node.title = entry.text;
+                node.icon = that.customactionicon;
+                node.addEventListener("click", e => that._dataEntryClicked(e, entry.id));
+                return node;
+              }
+              static value(domNode) {
+                return domNode.dataset.id;
+              }
+            }
+            DataEntryBlock.blotName = 'dataentry';
+            DataEntryBlock.tagName = 'iron-icon';
+            DataEntryBlock.className = 'dataentry';
+            Quill.register(DataEntryBlock);
+            this._dataEntryRegisted = true;
+          }
+
+          const entryData = {
+            id: id,
+            text: text
+          };
+          this._editor.insertEmbed(this.currentIndex(0), 'dataentry', entryData, 'api');
+        }
+
+        insertText(text, format) {
+          this._editor.insertText(this.currentIndex(0), text, format, 'api');
         }
 
         /**
@@ -540,12 +673,24 @@ This program is available under Apache License Version 2.0, available at https:/
           const clean = Quill.imports['modules/toolbar'].DEFAULTS.handlers.clean;
           const self = this;
 
+          const Font = Quill.import('formats/font');
+          Font.whitelist = ['times-new-roman', 'arial', 'courier-new', 'georgia', 'trebucket', 'verdana'];
+          Quill.register(Font, true);
+
+          const Size = Quill.import('attributors/style/size');
+          Size.whitelist = ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'];
+          Quill.register(Size, true);
+
           const toolbar = {
             container: this.shadowRoot.querySelector('[part="toolbar"]'),
             handlers: {
               clean: function() {
                 self._markToolbarClicked();
                 clean.call(this);
+              },
+              hr: function() {
+                self._markToolbarClicked();
+                self._insertHr();
               }
             }
           };
@@ -757,6 +902,18 @@ This program is available under Apache License Version 2.0, available at https:/
           this._closeLinkDialog();
         }
 
+        _insertHr() {
+          if (!this._diveredRegisted) {
+            const BlockEmbed = Quill.import('blots/block/embed');
+            class DividerBlot extends BlockEmbed { }
+            DividerBlot.blotName = 'divider';
+            DividerBlot.tagName = 'hr';
+            Quill.register(DividerBlot);
+            this._diveredRegisted = true;
+          }
+          this._editor.insertEmbed(this.currentIndex(0), 'divider', '', 'user');
+        }
+
         _updateLink(link, range) {
           this._markToolbarClicked();
           this._editor.formatText(range, 'link', link, SOURCE.USER);
@@ -932,6 +1089,14 @@ This program is available under Apache License Version 2.0, available at https:/
           }
         }
 
+        _serverButtonClicked(e) {
+          this.dispatchEvent(new CustomEvent('server-button-clicked', {detail: {button: 0}}));
+        }
+
+        _dataEntryClicked(e, id) {
+          this.dispatchEvent(new CustomEvent('data-entry-clicked', {detail: {id: id}}));
+        }
+
         _disabledChanged(disabled, readonly, editor) {
           if (disabled === undefined || readonly === undefined || editor === undefined) {
             return;
@@ -952,6 +1117,14 @@ This program is available under Apache License Version 2.0, available at https:/
           }
 
           this.__oldDisabled = disabled;
+        }
+
+        _toolbarButtonDisplay(toolbarConfig, id) {
+          if (toolbarConfig && toolbarConfig[id] == false) {
+            return 'none';
+          } else {
+            return '';
+          }
         }
 
         _valueChanged(value, editor) {

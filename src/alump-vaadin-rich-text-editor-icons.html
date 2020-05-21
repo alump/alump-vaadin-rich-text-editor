@@ -21,11 +21,15 @@
       --vaadin-rte-icons-list-ordered: "\ea08";
       --vaadin-rte-icons-redo: "\ea09";
       --vaadin-rte-icons-undo: "\ea0a";
+
+      --vaadin-rte-icons-indent-left: "\ea0a";
+      --vaadin-rte-icons-indent-right: "\ea0a";
+      --vaadin-rte-icons-hr: "\ea0a";
     }
   </style>
 </custom-style>
 
-<dom-module id="vaadin-rich-text-editor-icons">
+<dom-module id="alump-vaadin-rich-text-editor-icons">
   <template>
     <style>
       [part~="toolbar-button-align-center"]::before {
@@ -76,6 +80,15 @@
 
       :host([dir="rtl"]) [part~="toolbar-button-undo"]::before {
         content: var(--vaadin-rte-icons-redo);
+      }
+
+      /* alump additions */
+      [part~="toolbar-button-indent-left"] iron-icon,
+      [part~="toolbar-button-indent-right"] iron-icon,
+      [part~="toolbar-button-hr"] iron-icon,
+      [part~="toolbar-button-add-value"] iron-icon {
+        padding: 3px;
+        box-sizing: border-box;
       }
     </style>
   </template>

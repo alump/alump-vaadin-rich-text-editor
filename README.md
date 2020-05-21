@@ -1,3 +1,42 @@
+# alump's fork of vaadin-rich-text-editor
+
+Notice this fork keeps the original license. So you need to have license to use vaadin-rich-text-editor.
+
+This is my custom version of vaadin-rich-text-editor.
+It adds following features:
+
+- Font size/family/color/background pickers
+- Horizontal line support
+- Indentation support
+- Additional server side handled toolbar buttons (WIP)
+- Moah...
+
+![screenshot](images/demo.png "example screenshot")
+
+## Compile
+
+This guide is to get a local Polymer 3 / NPM version, that can be used to test it with alump-vaadin-rich-text-editor-flow.
+
+### Tools needed
+> npm install -g polymer-modulizer
+> npm iinstal -g magi-cli
+> npm install -g husky
+
+## TODO
+
+### Convert to Polymer 3
+> rm -fr bower_components node_modules && bower i && magi p3-convert --out . --import-style=name
+> npm install
+
+### Run
+> polymer serve --npm --module-resolution=node --port=3000 -H 127.0.0.1 --open
+
+## TODO
+
+
+# Original README...
+
+
 [![npm version](https://badgen.net/npm/v/@vaadin/vaadin-rich-text-editor)](https://www.npmjs.com/package/@vaadin/vaadin-rich-text-editor)
 [![Bower version](https://badgen.net/github/release/vaadin/vaadin-rich-text-editor)](https://github.com/vaadin/vaadin-rich-text-editor/releases)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/vaadin/vaadin-rich-text-editor)

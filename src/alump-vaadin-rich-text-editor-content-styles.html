@@ -1,4 +1,4 @@
-<dom-module id="vaadin-rich-text-editor-content-styles">
+<dom-module id="alump-vaadin-rich-text-editor-content-styles">
   <template>
     <style>
       [part="content"] {
@@ -75,6 +75,10 @@
         padding-left: 1em;
       }
 
+      strong {
+        font-weight: 700;
+      }
+
       code,
       pre {
         background-color: #f0f0f0;
@@ -103,6 +107,85 @@
         direction: rtl;
         text-align: right;
       }
+
+      /* alump added parts */
+      .ql-size-xxsmall {
+        font-size: xx-small;
+      }
+      .ql-size-xsmall {
+        font-size: x-small;
+      }
+      .ql-size-small {
+        font-size: small;
+      }
+      .ql-size-medium {
+        font-size: medium;
+      }
+      .ql-size-large {
+        font-size: large;
+      }
+      .ql-size-xlarge {
+        font-size: x-large;
+      }
+      .ql-size-xxlarge {
+        font-size: xx-large;
+      }
+
+      .ql-font-courier-new {
+        font-family: 'Courier New', Courier, monospace;
+      }
+      .ql-font-arial {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .ql-font-verdana {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      .ql-font-times-new-roman {
+        font-family: 'Times New Roman', Times, serif;
+      }
+      .ql-font-trebucket {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      }
+      .ql-font-georgia {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+      }
+
+      .ql-indent-1 {
+        padding-left: 1em;
+      }
+      .ql-indent-2 {
+        padding-left: 2em;
+      }
+      .ql-indent-3 {
+        padding-left: 3em;
+      }
+      .ql-indent-4 {
+        padding-left: 4em;
+      }
+      .ql-indent-5 {
+        padding-left: 5em;
+      }
+      .ql-indent-6 {
+        padding-left: 6em;
+      }
+      .ql-indent-7 {
+        padding-left: 7em;
+      }
+      .ql-indent-8 {
+        padding-left: 8em;
+      }
+
+      iron-icon.dataentry {
+        background: black;
+        color: yellow;
+        display: inline-block;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        padding: 5px;
+      }
+
+
     </style>
   </template>
 </dom-module>

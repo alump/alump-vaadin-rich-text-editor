@@ -6,7 +6,7 @@
       "url": "rich-text-editor-basic-demos",
       "src": "rich-text-editor-basic-demos.html",
       "meta": {
-        "title": "Vaadin Rich Text Editor Basics",
+        "title": "Alump's Vaadin Rich Text Editor Basics",
         "description": "",
         "image": ""
       }
@@ -16,7 +16,7 @@
       "url": "rich-text-editor-lumo-demos",
       "src": "rich-text-editor-lumo-demos.html",
       "meta": {
-        "title": "Vaadin Rich Text Editor Theme Variants",
+        "title": "Alump's Vaadin Rich Text Editor Theme Variants",
         "description": "",
         "image": ""
       }
@@ -26,7 +26,7 @@
       "url": "rich-text-editor-styling-demos",
       "src": "rich-text-editor-styling-demos.html",
       "meta": {
-        "title": "Vaadin Rich Text Editor Styling",
+        "title": "Alump's Vaadin Rich Text Editor Styling",
         "description": "",
         "image": ""
       }
