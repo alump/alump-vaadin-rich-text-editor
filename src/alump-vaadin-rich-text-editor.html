@@ -531,14 +531,15 @@ This program is available under Apache License Version 2.0, available at https:/
         insertDataEntry(id, text) {
           const that = this;
           if (!this._dataEntryRegisted) {
-            const BlockEmbed = Quill.import('blots/block/embed');
-            class DataEntryBlock extends BlockEmbed {
+            // const BlockEmbed = Quill.import('blots/block/embed');
+            const Embed = Quill.import('blots/embed');
+            class DataEntryBlock extends Embed {
               static create(entry) {
-                let node = super.create();
+                const node = super.create();
                 node.dataset.id = entry.id;
                 node.title = entry.text;
                 node.icon = that.customactionicon;
-                node.addEventListener("click", e => that._dataEntryClicked(e, entry.id));
+                node.addEventListener('click', e => that._dataEntryClicked(e, entry.id));
                 return node;
               }
               static value(domNode) {

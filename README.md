@@ -13,7 +13,19 @@ It adds following features:
 
 ![screenshot](images/demo.png "example screenshot")
 
-## Compile
+## Develop (Bower)
+
+This project is still written with Polymer 2, and using Bower. This mode can be used when developing it. Notice that
+this is planned to be released as Polymer 3 / NPM, and next section covers that
+
+> npm install
+> bower install
+> npm start
+
+These steps will get demo app running. Add /demo to end of URL to see the demo page.
+
+
+## Compile NPM
 
 This guide is to get a local Polymer 3 / NPM version, that can be used to test it with alump-vaadin-rich-text-editor-flow.
 
@@ -22,16 +34,46 @@ This guide is to get a local Polymer 3 / NPM version, that can be used to test i
 > npm iinstal -g magi-cli
 > npm install -g husky
 
-## TODO
+### Make sure naming and version is correct at package.json and bower.json
+Just make sure you have updated naming and versioning on these files before running the following steps. package.json will
+get replaced, but naming and versioning will be kept.
 
 ### Convert to Polymer 3
+As this project is/was originally done with bower / Polymer 2, it has to be converted to npm and Polymer 3 before npm package
+can be create. Following steps will convert the project. Notice that it will create commit and radically change the project
+setup. To return back to initial state, just stash, and reset HEAD~1 and clean -f the changes with git.
 > rm -fr bower_components node_modules && bower i && magi p3-convert --out . --import-style=name
 > npm install
 
 ### Run
 > polymer serve --npm --module-resolution=node --port=3000 -H 127.0.0.1 --open
 
-## TODO
+### Release your own version
+This step assumes you have updated the package info to point to your personal NPM repository naming. Also make sure your
+version is correct.
+
+> npm publish --access=public
+
+### Flow parts to use app on Vaadin 14+
+
+Repository for flow parts: [github.com/alump/alump-vaadin-rich-text-editor-flow](https://github.com/alump/alump-vaadin-rich-text-editor-flow)
+
+## Known issues
+
+### git commit issues
+Use no-verify, I haven't spent time making sure verify steps work
+> git commit --no-verify
+
+## Release history
+
+### 1.2.0-alump3
+Convert data entry to inline element to not break blocks
+
+### 1.2.0-alump2
+Adjusted dependendencies to be more strict on versions
+
+### 1.2.0-alump1
+First try
 
 
 # Original README...
