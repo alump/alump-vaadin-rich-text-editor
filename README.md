@@ -66,14 +66,16 @@ Use no-verify, I haven't spent time making sure verify steps work
 
 ## Release history
 
-### 1.2.0-alump3
-Convert data entry to inline element to not break blocks
+### 1.2.0-alump4
+- Adding index option to data entry method to make sure it will get right location event after the server round trip.
+- Add white space before data entry if at index 0: Quill Bug: https://github.com/quilljs/quill/issues/3045
+- Fix typo in I18N key
+- Add selection lenght value to server-button-clicked even for future use
 
-### 1.2.0-alump2
-Adjusted dependendencies to be more strict on versions
-
-### 1.2.0-alump1
-First try
+### 1.2.0-alump3 - 1.2.0-alump1 (unpublished)
+- alump3: Convert data entry to inline element to not break blocks
+- alump2: Adjusted dependendencies to be more strict on versions
+- alump1: First try
 
 
 # Original README...

@@ -448,7 +448,7 @@ This program is available under Apache License Version 2.0, available at https:/
                   ok: 'OK',
                   cancel: 'Cancel',
                   remove: 'Remove',
-                  identLeft: 'Indent Left',
+                  indentLeft: 'Indent Left',
                   indentRight: 'Indent Right',
                   hr: 'Insert Horizontal Rule',
                   fontSize: 'Size',
@@ -528,7 +528,7 @@ This program is available under Apache License Version 2.0, available at https:/
           return selection === null ? defVal : selection.index;
         }
 
-        insertDataEntry(id, text) {
+        insertDataEntry(id, text, index) {
           const that = this;
           if (!this._dataEntryRegisted) {
             // const BlockEmbed = Quill.import('blots/block/embed');
@@ -557,11 +557,20 @@ This program is available under Apache License Version 2.0, available at https:/
             id: id,
             text: text
           };
-          this._editor.insertEmbed(this.currentIndex(0), 'dataentry', entryData, 'api');
+
+          index = (typeof index !== 'undefined') ? index : this.currentIndex(0);
+
+          this._editor.insertEmbed(index, 'dataentry', entryData, 'api');
+
+          // Workaround, if embed is first element you can't select it (and so remove it)
+          if (index == 0) {
+            this._editor.insertText(index, ' ', 'api');
+          }
         }
 
-        insertText(text, format) {
-          this._editor.insertText(this.currentIndex(0), text, format, 'api');
+        insertText(text, format, index) {
+          index = (typeof index !== 'undefined') ? index : this.currentIndex(0);
+          this._editor.insertText(index, text, format, 'api');
         }
 
         /**
@@ -1091,7 +1100,15 @@ This program is available under Apache License Version 2.0, available at https:/
         }
 
         _serverButtonClicked(e) {
-          this.dispatchEvent(new CustomEvent('server-button-clicked', {detail: {button: 0}}));
+          const selection = this._editor.getSelection(true);
+
+          this.dispatchEvent(new CustomEvent('server-button-clicked', {
+            detail: {
+              button: 0,
+              index: selection.index,
+              length: selection.length
+            }
+          }));
         }
 
         _dataEntryClicked(e, id) {
