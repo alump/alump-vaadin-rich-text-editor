@@ -73,6 +73,9 @@ Use no-verify, I haven't spent time making sure verify steps work
 
 ## Release history
 
+### 1.2.0-alump7
+- Missing focus, select and blur methods added
+
 ### 1.2.0-alump6 (including skipped 1.2.0-alump5 changes)
 - Minor bug fixes (mainly event handling)
 - Upgrade dependendencies to Vaadin 14.2

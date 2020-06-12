@@ -1,6 +1,6 @@
 {
   "name": "@alump/alump-vaadin-rich-text-editor",
-  "version": "1.2.0-alump6",
+  "version": "1.2.0-alump7",
   "description": "alump-vaadin-rich-text-editor",
   "main": "alump-vaadin-rich-text-editor.html",
   "repository": "alump/alump-vaadin-rich-text-editor",
