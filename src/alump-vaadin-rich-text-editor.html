@@ -546,8 +546,8 @@ This program is available under Apache License Version 2.0, available at https:/
                 node.title = entry.text;
                 node.icon = that.customactionicon;
                 node.addEventListener('click', e => {
-                    e.preventDefault();
-                    that._dataEntryClicked(e, entry.id);
+                  e.preventDefault();
+                  that._dataEntryClicked(e, entry.id);
                 });
                 return node;
               }
@@ -575,6 +575,9 @@ This program is available under Apache License Version 2.0, available at https:/
           if (index == 0) {
             this._editor.insertText(index, ' ', 'api');
           }
+
+          // Emit event manually
+          this.__emitChangeEvent();
         }
 
         insertText(text, format, index) {

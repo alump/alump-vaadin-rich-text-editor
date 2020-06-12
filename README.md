@@ -45,6 +45,10 @@ get replaced, but naming and versioning will be kept.
 As this project is/was originally done with bower / Polymer 2, it has to be converted to npm and Polymer 3 before npm package
 can be create. Following steps will convert the project. Notice that it will create commit and radically change the project
 setup. To return back to initial state, just stash, and reset HEAD~1 and clean -f the changes with git.
+
+Notice that bower install is ran multiple times, and it might ask for dependency versions to use. For vaadin-lumo-styles
+select the version defined above.
+
 > rm -fr bower_components node_modules && bower i && magi p3-convert --out . --import-style=name
 > npm install
 
@@ -69,9 +73,10 @@ Use no-verify, I haven't spent time making sure verify steps work
 
 ## Release history
 
-### 1.2.0-alump5
+### 1.2.0-alump6 (including skipped 1.2.0-alump5 changes)
 - Minor bug fixes (mainly event handling)
 - Upgrade dependendencies to Vaadin 14.2
+- Emit value change event after adding data entry (to help flow API)
 
 ### 1.2.0-alump4
 - Adding index option to data entry method to make sure it will get right location event after the server round trip.
