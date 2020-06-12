@@ -19,7 +19,10 @@ This project is still written with Polymer 2, and using Bower. This mode can be 
 this is planned to be released as Polymer 3 / NPM, and next section covers that
 
 > npm install
+
+Bower install might offer versions for dependencies. Select 1.5.0 for vaadin-lumo-styles.
 > bower install
+
 > npm start
 
 These steps will get demo app running. Add /demo to end of URL to see the demo page.
@@ -65,6 +68,10 @@ Use no-verify, I haven't spent time making sure verify steps work
 > git commit --no-verify
 
 ## Release history
+
+### 1.2.0-alump5
+- Minor bug fixes (mainly event handling)
+- Upgrade dependendencies to Vaadin 14.2
 
 ### 1.2.0-alump4
 - Adding index option to data entry method to make sure it will get right location event after the server round trip.

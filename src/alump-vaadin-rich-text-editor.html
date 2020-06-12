@@ -528,6 +528,11 @@ This program is available under Apache License Version 2.0, available at https:/
           return selection === null ? defVal : selection.index;
         }
 
+        removeContent(index, lenght) {
+          console.log('Removing ' + index + ' ' + lenght);
+          this._editor.deleteText(index, lenght);
+        }
+
         insertDataEntry(id, text, index) {
           const that = this;
           if (!this._dataEntryRegisted) {
@@ -536,10 +541,14 @@ This program is available under Apache License Version 2.0, available at https:/
             class DataEntryBlock extends Embed {
               static create(entry) {
                 const node = super.create();
+                node.setAttribute('contenteditable', false);
                 node.dataset.id = entry.id;
                 node.title = entry.text;
                 node.icon = that.customactionicon;
-                node.addEventListener('click', e => that._dataEntryClicked(e, entry.id));
+                node.addEventListener('click', e => {
+                    e.preventDefault();
+                    that._dataEntryClicked(e, entry.id);
+                });
                 return node;
               }
               static value(domNode) {
@@ -1102,11 +1111,14 @@ This program is available under Apache License Version 2.0, available at https:/
         _serverButtonClicked(e) {
           const selection = this._editor.getSelection(true);
 
+          const index = (selection === null) ? 0 : selection.index;
+          const length = (selection === null) ? 0 : selection.length;
+
           this.dispatchEvent(new CustomEvent('server-button-clicked', {
             detail: {
               button: 0,
-              index: selection.index,
-              length: selection.length
+              index: index,
+              length: length
             }
           }));
         }
