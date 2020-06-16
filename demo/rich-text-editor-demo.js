@@ -54,7 +54,8 @@ window.RichTextEditorDemo = superClass => {
           }
           rte.addEventListener('server-button-clicked', e => rte.insertDataEntry(new Date().getTime(), 'Just a dummy entry in demo app'));
           rte.addEventListener('data-entry-clicked', e => alert('Data entry ' + e.detail.id + ' clicked!'));
-          rte.addEventListener('value-changed', e => console.log('Value changed'));
+          rte.addEventListener('value-changed', e => alert('Value changed ' + e));
+          rte.addEventListener('link-clicked', e => alert('Link clicked and event emitted'));
         }, 300);
       });
     }

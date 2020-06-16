@@ -73,6 +73,9 @@ Use no-verify, I haven't spent time making sure verify steps work
 
 ## Release history
 
+### 1.2.0-alump8
+- Optional API to have custom link edit/add handling
+
 ### 1.2.0-alump7
 - Missing focus, select and blur methods added
 

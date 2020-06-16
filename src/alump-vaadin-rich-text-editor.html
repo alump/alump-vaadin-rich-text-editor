@@ -205,7 +205,7 @@ This program is available under Apache License Version 2.0, available at https:/
 
     <vaadin-confirm-dialog
       id="linkDialog"
-      opened="{{_linkEditing}}"
+      opened="{{_linkEditorOpened}}"
       header="[[i18n.linkDialogTitle]]"
       >
       <vaadin-text-field
@@ -414,6 +414,15 @@ This program is available under Apache License Version 2.0, available at https:/
             },
 
             /**
+             * If true event linkclicked is fired instead of build in link editor. One call to
+             * editLinkConfirm(url), editLinkCancel or editLinkRemove method should follow the event.
+             */
+            emitlinkevents: {
+              type: Boolean,
+              value: false
+            },
+
+            /**
              * An object used to localize this component. The properties are used
              * e.g. as the tooltips for the editor toolbar buttons.
              *
@@ -483,6 +492,10 @@ This program is available under Apache License Version 2.0, available at https:/
             },
 
             _linkEditing: {
+              type: Boolean
+            },
+
+            _linkEditorOpened: {
               type: Boolean
             },
 
@@ -917,7 +930,20 @@ This program is available under Apache License Version 2.0, available at https:/
             } else if (range.length === 0) {
               this._linkIndex = range.index;
             }
+
             this._linkEditing = true;
+            if (this.emitlinkevents) {
+              this._linkEditorOpened = false;
+              this.dispatchEvent(new CustomEvent('link-clicked', {
+                detail: {
+                  linkUrl: this._linkUrl,
+                  linkIndex: this._linkIndex,
+                  linkRange: this._linkRange
+                }
+              }));
+            } else {
+              this._linkEditorOpened = true;
+            }
           }
         }
 
@@ -967,9 +993,15 @@ This program is available under Apache License Version 2.0, available at https:/
 
         _closeLinkDialog() {
           this._linkEditing = false;
+          this._linkEditorOpened = false;
           this._linkUrl = '';
           this._linkIndex = null;
           this._linkRange = null;
+        }
+
+        editLinkConfirm(url) {
+          this._linkUrl = url;
+          this._onLinkEditConfirm();
         }
 
         _onLinkEditConfirm() {
@@ -982,9 +1014,17 @@ This program is available under Apache License Version 2.0, available at https:/
           }
         }
 
+        editLinkCancel() {
+          this._onLinkEditCancel();
+        }
+
         _onLinkEditCancel() {
           this._closeLinkDialog();
           this._editor.focus();
+        }
+
+        editLinkRemove() {
+          this._onLinkEditRemove();
         }
 
         _onLinkEditRemove() {
