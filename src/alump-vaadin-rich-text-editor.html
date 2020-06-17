@@ -64,94 +64,118 @@ This program is available under Apache License Version 2.0, available at https:/
       <!-- Create toolbar container -->
       <div part="toolbar">
 
-        <span part="toolbar-group toolbar-group-history">
+      <span part="toolbar-group toolbar-group-history" class$="{{_toolGroupClass(tools, 'HISTORY')}}">
           <!-- Undo and Redo -->
-          <button type="button" part="toolbar-button toolbar-button-undo" on-click="_undo" title$="[[i18n.undo]]"></button>
-          <button type="button" part="toolbar-button toolbar-button-redo" on-click="_redo" title$="[[i18n.redo]]"></button>
+          <button type="button" part="toolbar-button toolbar-button-undo" on-click="_undo" title$="[[i18n.undo]]"
+            hidden$="{{_hideTool(tools, 'HISTORY')}}"></button>
+          <button type="button" part="toolbar-button toolbar-button-redo" on-click="_redo" title$="[[i18n.redo]]"
+            hidden$="{{_hideTool(tools, 'HISTORY')}}"></button>
         </span>
 
-        <span part="toolbar-group toolbar-group-emphasis">
+        <span part="toolbar-group toolbar-group-emphasis" class$="{{_toolGroupClass(tools, 'BOLD-ITALIC-UNDERLINE-STRIKE')}}">
           <!-- Bold -->
-          <button class="ql-bold" part="toolbar-button toolbar-button-bold" title$="[[i18n.bold]]"></button>
+          <button class="ql-bold" part="toolbar-button toolbar-button-bold" title$="[[i18n.bold]]"
+            hidden$="{{_hideTool(tools, 'BOLD')}}"></button>
 
           <!-- Italic -->
-          <button class="ql-italic" part="toolbar-button toolbar-button-italic" title$="[[i18n.italic]]"></button>
+          <button class="ql-italic" part="toolbar-button toolbar-button-italic" title$="[[i18n.italic]]"
+            hidden$="{{_hideTool(tools, 'ITALIC')}}"></button>
 
           <!-- Underline -->
-          <button class="ql-underline" part="toolbar-button toolbar-button-underline" title$="[[i18n.underline]]"></button>
+          <button class="ql-underline" part="toolbar-button toolbar-button-underline" title$="[[i18n.underline]]"
+            hidden$="{{_hideTool(tools, 'UNDERLINE')}}"></button>
 
           <!-- Strike -->
-          <button class="ql-strike" part="toolbar-button toolbar-button-strike" title$="[[i18n.strike]]"></button>
+          <button class="ql-strike" part="toolbar-button toolbar-button-strike" title$="[[i18n.strike]]"
+            hidden$="{{_hideTool(tools, 'STRIKE')}}"></button>
         </span>
 
-        <span part="toolbar-group toolbar-group-heading">
+        <span part="toolbar-group toolbar-group-heading" class$="{{_toolGroupClass(tools, 'HEADING')}}">
           <!-- Header buttons -->
-          <button type="button" class="ql-header" value="1" part="toolbar-button toolbar-button-h1" title$="[[i18n.h1]]"></button>
-          <button type="button" class="ql-header" value="2" part="toolbar-button toolbar-button-h2" title$="[[i18n.h2]]"></button>
-          <button type="button" class="ql-header" value="3" part="toolbar-button toolbar-button-h3" title$="[[i18n.h3]]"></button>
+          <button type="button" class="ql-header" value="1" part="toolbar-button toolbar-button-h1" title$="[[i18n.h1]]"
+            hidden$="{{_hideTool(tools, 'HEADING')}}"></button>
+          <button type="button" class="ql-header" value="2" part="toolbar-button toolbar-button-h2" title$="[[i18n.h2]]"
+            hidden$="{{_hideTool(tools, 'HEADING')}}"></button>
+          <button type="button" class="ql-header" value="3" part="toolbar-button toolbar-button-h3" title$="[[i18n.h3]]"
+            hidden$="{{_hideTool(tools, 'HEADING')}}"></button>
         </span>
 
-        <span part="toolbar-group toolbar-group-glyph-transformation">
+        <span part="toolbar-group toolbar-group-glyph-transformation" class$="{{_toolGroupClass(tools, 'SUBSCRIPT-SUPERSCRIPT')}}">
           <!-- Subscript and superscript -->
-          <button class="ql-script" value="sub" part="toolbar-button toolbar-button-subscript" title$="[[i18n.subscript]]"></button>
-          <button class="ql-script" value="super" part="toolbar-button toolbar-button-superscript" title$="[[i18n.superscript]]"></button>
+          <button class="ql-script" value="sub" part="toolbar-button toolbar-button-subscript" title$="[[i18n.subscript]]"
+            hidden$="{{_hideTool(tools, 'SUBSCRIPT')}}"></button>
+          <button class="ql-script" value="super" part="toolbar-button toolbar-button-superscript" title$="[[i18n.superscript]]"
+            hidden$="{{_hideTool(tools, 'SUPERSCRIPT')}}"></button>
         </span>
 
-        <span part="toolbar-group toolbar-group-list">
+        <span part="toolbar-group toolbar-group-list" class$="{{_toolGroupClass(tools, 'ORDEREDLIST-BULLETLIST')}}">
           <!-- List buttons -->
-          <button type="button" class="ql-list" value="ordered" part="toolbar-button toolbar-button-list-ordered" title$="[[i18n.listOrdered]]"></button>
-          <button type="button" class="ql-list" value="bullet" part="toolbar-button toolbar-button-list-bullet" title$="[[i18n.listBullet]]"></button>
+          <button type="button" class="ql-list" value="ordered" part="toolbar-button toolbar-button-list-ordered" title$="[[i18n.listOrdered]]"
+            hidden$="{{_hideTool(tools, 'ORDEREDLIST')}}"></button>
+          <button type="button" class="ql-list" value="bullet" part="toolbar-button toolbar-button-list-bullet" title$="[[i18n.listBullet]]"
+            hidden$="{{_hideTool(tools, 'BULLETLIST')}}"></button>
         </span>
 
-        <span part="toolbar-group toolbar-group-alignment">
+        <span part="toolbar-group toolbar-group-alignment" class$="{{_toolGroupClass(tools, 'ALIGNMENT')}}">
           <!-- Align buttons -->
-          <button type="button" class="ql-align" value="" part="toolbar-button toolbar-button-align-left" title$="[[i18n.alignLeft]]"></button>
-          <button type="button" class="ql-align" value="center" part="toolbar-button toolbar-button-align-center" title$="[[i18n.alignCenter]]"></button>
-          <button type="button" class="ql-align" value="right" part="toolbar-button toolbar-button-align-right" title$="[[i18n.alignRight]]"></button>
+          <button type="button" class="ql-align" value="" part="toolbar-button toolbar-button-align-left" title$="[[i18n.alignLeft]]"
+            hidden$="{{_hideTool(tools, 'ALIGNMENT')}}"></button>
+          <button type="button" class="ql-align" value="center" part="toolbar-button toolbar-button-align-center" title$="[[i18n.alignCenter]]"
+            hidden$="{{_hideTool(tools, 'ALIGNMENT')}}"></button>
+          <button type="button" class="ql-align" value="right" part="toolbar-button toolbar-button-align-right" title$="[[i18n.alignRight]]"
+            hidden$="{{_hideTool(tools, 'ALIGNMENT')}}"></button>
         </span>
 
-        <span part="toolbar-group toolbar-group-indent">
+        <span part="toolbar-group toolbar-group-indent" class$="{{_toolGroupClass(tools, 'INDENT')}}">
           <!-- Indent buttons (added by alump-vaadin-rich-text-editor) -->
-          <button type="button" class="ql-indent" value="-1" part="toolbar-button toolbar-button-indent-left" title$="[[i18n.indentLeft]]">
+          <button type="button" class="ql-indent" value="-1" part="toolbar-button toolbar-button-indent-left" title$="[[i18n.indentLeft]]"
+            hidden$="{{_hideTool(tools, 'INDENT')}}">
             <iron-icon icon="vaadin:deindent"></iron-icon>
           </button>
-          <button type="button" class="ql-indent" value="+1" part="toolbar-button toolbar-button-indent-right" title$="[[i18n.indentRight]]">
+          <button type="button" class="ql-indent" value="+1" part="toolbar-button toolbar-button-indent-right" title$="[[i18n.indentRight]]"
+            hidden$="{{_hideTool(tools, 'INDENT')}}">
             <iron-icon icon="vaadin:indent"></iron-icon>
           </button>
         </span>
 
-        <span part="toolbar-group toolbar-group-hr">
+        <span part="toolbar-group toolbar-group-hr" class$="{{_toolGroupClass(tools, 'DIVIDER')}}">
           <!-- HR button (added by alump-vaadin-rich-text-editor) -->
-          <button type="button" class="ql-hr" value="" part="toolbar-button toolbar-button-hr" title$="[[i18n.hr]]">
+          <button type="button" class="ql-hr" value="" part="toolbar-button toolbar-button-hr" title$="[[i18n.hr]]"
+            hidden$="{{_hideTool(tools, 'DIVIDER')}}">
             <iron-icon icon="vaadin:line-h"></iron-icon>
           </button>
         </span>
 
-        <span part="toolbar-group toolbar-group-rich-text">
+        <span part="toolbar-group toolbar-group-rich-text" class$="{{_toolGroupClass(tools, 'IMAGE-LINK')}}">
           <!-- Image -->
-          <button type="button" part="toolbar-button toolbar-button-image" title$="[[i18n.image]]" on-touchend="_onImageTouchEnd" on-click="_onImageClick"></button>
+          <button type="button" part="toolbar-button toolbar-button-image" title$="[[i18n.image]]" on-touchend="_onImageTouchEnd"
+            on-click="_onImageClick" hidden$="{{_hideTool(tools, 'IMAGE')}}"></button>
           <!-- Link -->
-          <button type="button" part="toolbar-button toolbar-button-link" title$="[[i18n.link]]" on-click="_onLinkClick"></button>
+          <button type="button" part="toolbar-button toolbar-button-link" title$="[[i18n.link]]" on-click="_onLinkClick"
+            hidden$="{{_hideTool(tools, 'LINK')}}"></button>
         </span>
 
-        <span part="toolbar-group toolbar-group-block">
+        <span part="toolbar-group toolbar-group-block" class$="{{_toolGroupClass(tools, 'BLOCKQUOTE-CODE')}}">
           <!-- Blockquote -->
-          <button type="button" class="ql-blockquote" part="toolbar-button toolbar-button-blockquote" title$="[[i18n.blockquote]]"></button>
+          <button type="button" class="ql-blockquote" part="toolbar-button toolbar-button-blockquote" title$="[[i18n.blockquote]]"
+            hidden$="{{_hideTool(tools, 'BLOCKQUOTE')}}"></button>
 
           <!-- Code block -->
-          <button type="button" class="ql-code-block" part="toolbar-button toolbar-button-code-block" title$="[[i18n.codeBlock]]"></button>
+          <button type="button" class="ql-code-block" part="toolbar-button toolbar-button-code-block" title$="[[i18n.codeBlock]]"
+            hidden$="{{_hideTool(tools, 'CODE')}}"></button>
         </span>
 
-        <span part="toolbar-group toolbar-group-format">
+        <span part="toolbar-group toolbar-group-format" class$="{{_toolGroupClass(tools, 'CLEAN')}}">
           <!-- Clean -->
-          <button type="button" class="ql-clean" part="toolbar-button toolbar-button-clean" title$="[[i18n.clean]]"></button>
+          <button type="button" class="ql-clean" part="toolbar-button toolbar-button-clean" title$="[[i18n.clean]]"
+            hidden$="{{_hideTool(tools, 'CLEAN')}}"></button>
         </span>
 
         <input id="fileInput" type="file" accept="image/png, image/gif, image/jpeg, image/bmp, image/x-icon" on-change="_uploadImage">
 
-        <span part="toolbar-group toolbar-group-font">
+        <span part="toolbar-group toolbar-group-font" class$="{{_toolGroupClass(tools, 'BACKGROUND-COLOR-FONT-SIZE')}}">
           <!-- Font options (added by alump-vaadin-rich-text-editor) -->
-          <select class="ql-background">
+          <select class="ql-background" hidden$="{{_hideTool(tools, 'BACKGROUND')}}">
             <option selected value="">[[i18n.background]]</option>
             <option value="white">White</option>
             <option value="black">Black</option>
@@ -160,7 +184,7 @@ This program is available under Apache License Version 2.0, available at https:/
             <option value="yellow">Yellow</option>
             <option value="blue">Blue</option>
           </select>
-          <select class="ql-color">
+          <select class="ql-color" hidden$="{{_hideTool(tools, 'COLOR')}}">
             <option selected value="">[[i18n.foreground]]</option>
             <option value="white">White</option>
             <option value="black">Black</option>
@@ -169,7 +193,7 @@ This program is available under Apache License Version 2.0, available at https:/
             <option value="yellow">Yellow</option>
             <option value="blue">Blue</option>
           </select>
-          <select class="ql-font">
+          <select class="ql-font" hidden$="{{_hideTool(tools, 'FONT')}}">
             <option selected value="">[[i18n.fontFamily]]</option>
             <option value="">Normal</option>
             <option value="times-new-roman">Times New Roman</option>
@@ -179,7 +203,7 @@ This program is available under Apache License Version 2.0, available at https:/
             <option value="trebucket">Trebucket</option>
             <option value="verdana">Verdana</option>
           </select>
-          <select class="ql-size">
+          <select class="ql-size" hidden$="{{_hideTool(tools, 'SIZE')}}">
             <option selected value="">[[i18n.fontSize]]</option>
             <option value="xx-small">XX-Small</option>
             <option value="x-small">X-Small</option>
@@ -192,7 +216,7 @@ This program is available under Apache License Version 2.0, available at https:/
         </span>
 
         <button type="button" id="add-field-button" part="toolbar-button toolbar-button-add-value" title$="[[i18n.customAction]]"
-          on-click="_serverButtonClicked">
+          on-click="_serverButtonClicked" hidden$="{{_hideTool(tools, 'DATAENTRY')}}"> 
           <iron-icon icon="[[customactionicon]]"></iron-icon>
         </button>
       </div>
@@ -423,6 +447,37 @@ This program is available under Apache License Version 2.0, available at https:/
             },
 
             /**
+             * Tools offered. Order of values does not matter. Empty list is same as all values.
+             */
+            tools: {
+              type: Array,
+              value: [
+                'HISTORY',
+                'BOLD',
+                'ITALIC',
+                'UNDERLINE',
+                'STRIKE',
+                'HEADING',
+                'SUBSCRIPT',
+                'SUPERSCRIPT',
+                'ORDEREDLIST',
+                'BULLETLIST',
+                'ALIGNMENT',
+                'INDENT',
+                'DIVIDER',
+                'IMAGE',
+                'LINK',
+                'BLOCKQUOTE',
+                'CODE',
+                'CLEAN',
+                'BACKGROUND',
+                'COLOR',
+                'FONT',
+                'SIZE',
+                'DATAENTRY']
+            },
+
+            /**
              * An object used to localize this component. The properties are used
              * e.g. as the tooltips for the editor toolbar buttons.
              *
@@ -541,8 +596,8 @@ This program is available under Apache License Version 2.0, available at https:/
           return selection === null ? defVal : selection.index;
         }
 
-        removeContent(index, lenght) {
-          this._editor.deleteText(index, lenght);
+        removeContent(index, length) {
+          this._editor.deleteText(index, length);
         }
 
         select(index, length) {
@@ -561,7 +616,7 @@ This program is available under Apache License Version 2.0, available at https:/
           this._editor.blur();
         }
 
-        insertDataEntry(id, text, index) {
+        insertDataEntry(id, index) {
           const that = this;
           if (!this._dataEntryRegisted) {
             // const BlockEmbed = Quill.import('blots/block/embed');
@@ -571,7 +626,6 @@ This program is available under Apache License Version 2.0, available at https:/
                 const node = super.create();
                 node.setAttribute('contenteditable', false);
                 node.dataset.id = entry.id;
-                node.title = entry.text;
                 node.icon = that.customactionicon;
                 node.addEventListener('click', e => {
                   e.preventDefault();
@@ -591,8 +645,7 @@ This program is available under Apache License Version 2.0, available at https:/
           }
 
           const entryData = {
-            id: id,
-            text: text
+            id: id
           };
 
           index = (typeof index !== 'undefined') ? index : this.currentIndex(0);
@@ -1179,6 +1232,24 @@ This program is available under Apache License Version 2.0, available at https:/
               length: length
             }
           }));
+        }
+
+        _hideTool(tools, toolName) {
+          return !this._showTool(tools, toolName);
+        }
+
+        _showTool(tools, toolName) {
+          return !tools || tools.length == 0 || tools.includes(toolName);
+        }
+
+        _toolGroupClass(allTools, groupTools) {
+          const groupToolsArray = groupTools.split('-');
+
+          if (typeof allTools == 'undefined' || allTools.length == 0 || groupToolsArray.filter(t => allTools.includes(t)).length > 0) {
+            return '';
+          } else {
+            return 'empty';
+          }
         }
 
         _dataEntryClicked(e, id) {

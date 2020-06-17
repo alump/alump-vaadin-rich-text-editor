@@ -73,6 +73,10 @@ Use no-verify, I haven't spent time making sure verify steps work
 
 ## Release history
 
+### 1.2.0-alump10 (alump9 skipped because of reasons)
+- Remove tooltip from dataentry as it causes issues
+- Allow to define tools offered on toolbar
+
 ### 1.2.0-alump8
 - Optional API to have custom link edit/add handling
 

@@ -28,7 +28,7 @@
         padding: calc(var(--lumo-space-s) - 1px) var(--lumo-space-xs);
       }
 
-      [part~="toolbar-group"] {
+      [part~="toolbar-group"]:not(.empty) {
         margin: 0 calc(var(--lumo-space-l) / 2 - 1px);
       }
 
@@ -216,7 +216,7 @@
         height: var(--lumo-size-s);
       }
 
-      :host([theme~="compact"]) [part~="toolbar-group"] {
+      :host([theme~="compact"]) [part~="toolbar-group"]:not(.empty) {
         margin: 0 calc(var(--lumo-space-m) / 2 - 1px);
       }
 

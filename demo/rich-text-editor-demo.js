@@ -52,7 +52,7 @@ window.RichTextEditorDemo = superClass => {
           } else {
             rte.value = `[{"insert":"Write your content here…"}]`;
           }
-          rte.addEventListener('server-button-clicked', e => rte.insertDataEntry(new Date().getTime(), 'Just a dummy entry in demo app'));
+          rte.addEventListener('server-button-clicked', e => rte.insertDataEntry(new Date().getTime()));
           rte.addEventListener('data-entry-clicked', e => alert('Data entry ' + e.detail.id + ' clicked!'));
           rte.addEventListener('value-changed', e => alert('Value changed ' + e));
           rte.addEventListener('link-clicked', e => alert('Link clicked and event emitted'));
