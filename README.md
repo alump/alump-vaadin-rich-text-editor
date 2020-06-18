@@ -7,9 +7,11 @@ It adds following features:
 
 - Font size/family/color/background pickers
 - Horizontal line support
-- Indentation support
-- Additional server side handled toolbar buttons (WIP)
-- Moah...
+- Indentation and list support enabled
+- Additional server side handled toolbar buttons
+- Link dialog can be handled on server side (confirm-dialog is limited and hard to theme)
+- Toolbar can be modified (unwanted buttons hidden)
+- Adds missing focusing and selecting features
 
 ![screenshot](images/demo.png "example screenshot")
 
